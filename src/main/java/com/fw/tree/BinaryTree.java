@@ -22,8 +22,9 @@ public class BinaryTree {
                 current = current.leftChild;
             }else if(key >= current.iData) {
                 current = current.rightChild;
+            }else if(current == null) {
+                return null;
             }
-            return  null;
         }
         return null;
     }
@@ -50,14 +51,65 @@ public class BinaryTree {
                     parent.rightChild = newNode;
                     return;
                 }
-
             }
         }
 
     }
 
-    public void delete(int key) {
+    public boolean delete(int key) {
+        if(isEmpty())return false;
+        Node current = root;
+        // find delete node
+        Node parent = root;
+        boolean isLeft = false;
+        while(current.iData != key) {
+            parent = current;
+            if (key < current.iData) {
+                isLeft = true;
+                current = current.leftChild;
+            }else if(key >= current.iData){
+                isLeft = false;
+                current = current.rightChild;
+            }else if(current == null) {
+                return false;
+            }
+        }
 
+       // the delete node doesn't have any child
+        if(null == current.leftChild && null == current.rightChild) {
+            // the delete node is root
+            if (current == root) {
+                root = null;
+            }
+            if (isLeft) {
+                parent.leftChild = null;
+            } else {
+                parent.rightChild = null;
+            }
+       // the delete node has one child
+        }else if(null == current.leftChild) {
+            if(current == root) {
+                root = current.rightChild;
+            }
+            if(isLeft) {
+                parent.leftChild = current.rightChild;
+            }else {
+                parent.rightChild = current.rightChild;
+            }
+        }else if (null == current.rightChild) {
+            if(current == root) {
+                root = current.leftChild;
+            }
+            if(isLeft) {
+                parent.leftChild = current.leftChild;
+            }else {
+                parent.rightChild = current.leftChild;
+            }
+        }
+        // the delete node has two nodes
+        else if(null != current.leftChild && null != current.rightChild) {
+
+        }
     }
 
     // ÖÐÐò±éÀú
@@ -74,6 +126,16 @@ public class BinaryTree {
 
     public boolean isEmpty() {return(null == root);}
 
+    public Node findMinNode() {
+        if (isEmpty())return null;
+        Node current = root;
+        while(current != null) {
+           if(current.leftChild == null)return current;
+            current = current.leftChild;
+        }
+        return null;
+    }
+
 
 
     public static void main(String[] args) {
@@ -84,6 +146,7 @@ public class BinaryTree {
         }
         tree.inOrder(tree.root);
         log.info("RootNode ---->: "+tree.root.iData);
+        tree.findMinNode().displayNode();
 
     }
 }
