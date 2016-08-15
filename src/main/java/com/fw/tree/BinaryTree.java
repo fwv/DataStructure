@@ -108,11 +108,37 @@ public class BinaryTree {
         }
         // the delete node has two nodes
         else if(null != current.leftChild && null != current.rightChild) {
-
+            Node successor = getSuccessor(current);
+            if(current == root) {
+                root = successor;
+            }else if(isLeft) {
+                parent.leftChild = successor;
+            }else {
+                parent.rightChild = successor;
+            }
+            successor.leftChild = current.leftChild;
         }
+        return true;
     }
 
-    // ÖÐÐò±éÀú
+    // æŸ¥æ‰¾æŒ‡å®šåˆ é™¤èŠ‚ç‚¹çš„ä¸­åºåŽç»§èŠ‚ç‚¹
+    private Node getSuccessor(Node delNode) {
+        Node successorparent = delNode;
+        Node successor = delNode;
+        Node current = delNode.rightChild;
+        while(null != current) {
+            successorparent = successor;
+            successor = current;
+            current = current.leftChild;
+        }
+        if(successor != delNode.rightChild) {
+            successorparent.leftChild = successor.rightChild;
+            successor.rightChild = delNode.rightChild;
+        }
+        return successor;
+    }
+
+    // ä¸­åºéåŽ†
     private void inOrder(Node localRoot) {
         if(null != localRoot) {
             inOrder(localRoot.leftChild);
@@ -121,8 +147,22 @@ public class BinaryTree {
         }
     }
 
-    // Ç°Ðò±éÀú
-    // ºóÐò±éÀú
+    // å‰åºéåŽ†
+    private void frontOrder(Node localRoot) {
+        if(null != localRoot) {
+            localRoot.displayNode();
+            inOrder(localRoot.leftChild);
+            inOrder(localRoot.rightChild);
+        }
+    }
+    // åŽåºéåŽ†
+    private void afterOrder(Node localRoot) {
+        if(null != localRoot) {
+            inOrder(localRoot.leftChild);
+            inOrder(localRoot.rightChild);
+            localRoot.displayNode();
+        }
+    }
 
     public boolean isEmpty() {return(null == root);}
 
@@ -141,12 +181,17 @@ public class BinaryTree {
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
         log.info("Tree---->: ");
-        for(int i = 0; i < 10; i++) {
-            tree.insert((int)(Math.random()*100));
+        tree.insert(3);
+        for(int i = 0; i < 5; i++) {
+           // tree.insert((int)(Math.random()*100));
+            tree.insert(i+1);
         }
+        tree.insert(8);
+        tree.insert(7);
+        tree.insert(9);
         tree.inOrder(tree.root);
-        log.info("RootNode ---->: "+tree.root.iData);
-        tree.findMinNode().displayNode();
+        tree.delete(3);
+        tree.inOrder(tree.root);
 
     }
 }

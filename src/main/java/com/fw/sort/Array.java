@@ -43,47 +43,50 @@ public class Array {
     }
 
     public void bubbleFromRightSort() {
-       for(int i = nElems; i > 1; i--) {
+       for(int i = nElems-1; i > 1; i--) {
             for(int j = 0; j < i; j++) {
-                if(a[j] > a[j+1])
+                if(a[j] > a[j+1]) {
                     swap(j, j+1);
+                }
             }
        }
     }
 
     public void bubbleFromLeftSort() {
-        for(int i = 0; i < nElems-2; i++ ) {
+        for(int i = 0; i < nElems-2; i++) {
             for(int j = nElems-1; j > i; j--) {
-                if(a[j] < a[j-1])
-                    swap(j, j-1);
+                if(a[j] < a[j-1]) {
+                 swap(j, j-1);
+                }
             }
         }
     }
 
     public void selectionSort() {
        for(int i = 0; i < nElems-1; i++) {
-            for (int j = i+1; j < nElems; j++) {
+           for(int j = i+1; j < nElems; j++) {
                 if(a[j] < a[i]) {
                     swap(j, i);
                 }
-            }
+           }
        }
     }
-
+    // 双向冒泡排序
     public void doubleDirectBubbleSort() {
-        int leftOut = 0;
-        int rightOut = nElems - 1;
-        for(; leftOut < rightOut; leftOut++, rightOut--) {
-            for(int in = leftOut; in < rightOut; in++) {
-                if(a[in] > a[in+1])
+        int outLeft = 0;
+        int outRight = nElems-1;
+        for( ; outLeft < outRight; outLeft++, outRight--) {
+            for(int in = outLeft; in < outRight; in++) {
+                if(a[in] > a[in+1]) {
                     swap(in, in+1);
+                }
             }
-            for(int in = rightOut; in > leftOut; in--) {
-                if(a[in] < a[in-1])
+            for(int in = outRight; in > outLeft; in--) {
+                if(a[in] < a[in-1]) {
                     swap(in, in-1);
+                }
             }
         }
-
     }
 
     public void insertSort() {
@@ -96,7 +99,7 @@ public class Array {
             }
             a[j] = temp;
         }
-    }
+     }
 
     public static void main(String[] args) {
         Array a = new Array(100);
@@ -107,7 +110,7 @@ public class Array {
         }
 
         a.show();
-        a.insertSort();
+        a.doubleDirectBubbleSort();
         a.show();
     }
 
