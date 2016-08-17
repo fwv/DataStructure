@@ -101,16 +101,65 @@ public class Array {
         }
      }
 
+    public void shellSort() {
+        int out,in;
+        long temp;
+        int h = 1;
+        while(h < nElems/3) {
+            h = h * 3 + 1;
+        }
+        while(h > 0) {
+            for(out = h; out < nElems; out++) {
+                temp = a[out];
+                in = out;
+                while(in > h-1 && a[in - h] > temp) {
+                    a[in] = a[in -h];
+                    in -= h;
+                }
+                a[in] = temp;
+            }
+            h = (h - 1) / 3;
+        }
+    }
+
+    public void quickSort(int left, int right) {
+        if (right - left <= 0)return;
+
+        long pivot = a[left];
+
+        int p = partitionIt(left, right, pivot);
+        quickSort(left, p - 1);
+        quickSort(p + 1, right);
+        //this.show();
+    }
+
+    public int partitionIt(int left, int right, long pivot) {
+        int leftPtr = left;
+        int rightPtr = right + 1;
+        while(true) {
+            while(a[++leftPtr] < pivot) {
+                if(leftPtr == right)break;
+            }
+            while(a[--rightPtr] > pivot) {
+                if (rightPtr == left)break;
+            }
+            if(leftPtr >= rightPtr)break;
+            swap(leftPtr, rightPtr);
+        }
+        swap(left, rightPtr);
+        return rightPtr;
+    }
+
     public static void main(String[] args) {
         Array a = new Array(100);
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 10; i++)
         {
             long temp = (long)(Math.random()*(15-1));
             a.insert(temp);
         }
 
         a.show();
-        a.doubleDirectBubbleSort();
+        a.quickSort(0, a.nElems-1);
         a.show();
     }
 
