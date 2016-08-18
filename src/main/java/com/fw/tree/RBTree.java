@@ -100,7 +100,7 @@ public class RBTree<T extends Comparable<T>> {
         }
         while(null != current) {
             parent = current;
-            if(current.key.compareTo(node.key) < 0) {
+            if(current.key.compareTo(node.key) <= 0) {
                 current = current.right;
             }else {
                 current = current.left;
@@ -131,7 +131,7 @@ public class RBTree<T extends Comparable<T>> {
             if(parent == gparent.left) {
                 // case 1: uncle is red
                 Node uncle = gparent.right;
-                if(RED == uncle.color && null != uncle) {
+                if(null != uncle && RED == uncle.color) {
                     parent.changeColor(BLACK);
                     uncle.changeColor(BLACK);
                     gparent.changeColor(RED);
@@ -206,7 +206,7 @@ public class RBTree<T extends Comparable<T>> {
 
         Node current = this.root;
         while(key != current.key) {
-            if(current.key.compareTo(key) < 0) {
+            if(current.key.compareTo(key) > 0) {
                 current = current.left;
                 if(null == current)return null;
             }else {
@@ -219,73 +219,91 @@ public class RBTree<T extends Comparable<T>> {
 
 
     public void remove(Node<T> node) {
-        Node child,parent;
+        log.info("DELETE---------------------------------------->");
+        Node<T> child, parent;
         boolean color;
-        if(null != node.left && null != node.right) {
-            Node replace = node;
-            replace = replace.right;
-            if(replace != null) {
-                replace = replace.left;
-            }
-            if (this.root == node) {
-                this.root = replace;
-            }else {
-                if (node == node.parent.left) {
-                    node.parent.left = replace;
-                }else {
-                    node.parent.right = replace;
-                }
-            }
-            child = replace.right;
-            parent = replace.parent;
-            color = replace.color;
 
-            if(parent == node) {
+        // 被删除节点的"左右孩子都不为空"的情况。
+        if ( (node.left!=null) && (node.right!=null) ) {
+            // 被删节点的后继节点。(称为"取代节点")
+            // 用它来取代"被删节点"的位置，然后再将"被删节点"去掉。
+            Node<T> replace = node;
+
+            // 获取后继节点
+            replace = replace.right;
+            while (replace.left != null)
+                replace = replace.left;
+
+            // "node节点"不是根节点(只有根节点不存在父节点)
+            if ((node.parent)!=null) {
+                if ((node.parent).left == node)
+                    (node.parent).left = replace;
+                else
+                    (node.parent).right = replace;
+            } else {
+                // "node节点"是根节点，更新根节点。
+                this.root = replace;
+            }
+
+            // child是"取代节点"的右孩子，也是需要"调整的节点"。
+            // "取代节点"肯定不存在左孩子！因为它是一个后继节点。
+            child = replace.right;
+            parent = (replace.parent);
+            // 保存"取代节点"的颜色
+            color = (replace.color);
+
+            // "被删除节点"是"它的后继节点的父节点"
+            if (parent == node) {
                 parent = replace;
-            }else {
-                if(null != child) {
+            } else {
+                // child不为空
+                if (child!=null)
                     child.parent = parent;
-                    parent.left = child;
-                }
+                parent.left = child;
+
                 replace.right = node.right;
                 node.right.parent = replace;
             }
+
             replace.parent = node.parent;
             replace.color = node.color;
             replace.left = node.left;
             node.left.parent = replace;
 
-            if(color == BLACK) {
+            if (color == BLACK)
                 removeFixUp(child, parent);
-            }
+
             node = null;
-            return;
+            return ;
         }
 
-        if(node.left != null) {
+        if (node.left !=null) {
             child = node.left;
-        }else {
+        } else {
             child = node.right;
         }
+
         parent = node.parent;
+        // 保存"取代节点"的颜色
         color = node.color;
 
-        if(null != child)
+        if (child!=null)
             child.parent = parent;
 
-        if (null != parent) {
-            if (parent.left == node) {
+        // "node节点"不是根节点
+        if (parent!=null) {
+            if (parent.left == node)
                 parent.left = child;
-            }else if (parent.right == node) {
+            else
                 parent.right = child;
-            }
         } else {
             this.root = child;
         }
 
-        if (BLACK == color)
+        if (color == BLACK)
             removeFixUp(child, parent);
         node = null;
+
     }
 
     public void remove(T key) {
@@ -293,39 +311,117 @@ public class RBTree<T extends Comparable<T>> {
         remove(del);
     }
 
+    public boolean isRed(Node n) {
+        return n.color == RED;
+    }
+
+    public boolean isBlack(Node n) {
+        return n.color == BLACK;
+    }
+
+    // 删除节点以后，如果替代节点为黑，那么子节点分支少了一个黑，将子节点兄弟节点分支也减少一个黑以后，
+    // 由子节点的位置开始由上直至根节点查找任意一个红节点，将其置为黑色恢复rb树的红黑性质。
     private void removeFixUp(Node node, Node parent) {
-        Node other;
-        while(((null == node) || node.color==BLACK) && node != this.root) {
+        Node<T> other;
+        while ((node==null || node.color==BLACK) && (node != this.root)) {
             if (parent.left == node) {
                 other = parent.right;
-
-                //case 1:
-                if (other.color == RED) {
+                if (other.color==RED) {
+                    // Case 1: x的兄弟w是红色的
                     other.changeColor(BLACK);
                     parent.changeColor(RED);
                     leftRotate(parent);
                     other = parent.right;
                 }
 
-            }else {
+                if ((other.left==null || isBlack(other.left)) &&
+                        (other.right==null || isBlack(other.right))) {
+                    // Case 2: x的兄弟w是黑色，且w的俩个孩子也都是黑色的
+                    other.changeColor(RED);
+                    node = parent;
+                    parent = node.parent;
+                } else {
+
+                    if (other.right==null || isBlack(other.right)) {
+                        // Case 3: x的兄弟w是黑色的，并且w的左孩子是红色，右孩子为黑色。
+                        other.left.changeColor(BLACK);
+                        other.changeColor(RED);
+                        rightRotate(other);
+                        other = parent.right;
+                    }
+                    // Case 4: x的兄弟w是黑色的；并且w的右孩子是红色的，左孩子任意颜色。
+                    other.changeColor(parent.color);
+                    parent.changeColor(BLACK);
+                    other.right.changeColor(BLACK);
+                    leftRotate(parent);
+                    node = this.root;
+                    break;
+                }
+            } else {
+
                 other = parent.left;
+                if (isRed(other)) {
+                    // Case 1: x的兄弟w是红色的
+                    other.changeColor(BLACK);
+                    parent.changeColor(RED);
+                    rightRotate(parent);
+                    other = parent.left;
+                }
+
+                if ((other.left==null || isBlack(other.left)) &&
+                        (other.right==null || isBlack(other.right))) {
+                    // Case 2: x的兄弟w是黑色，且w的俩个孩子也都是黑色的
+                    other.changeColor(RED);
+                    node = parent;
+                    parent = node.parent;
+                } else {
+
+                    if (other.left==null || isBlack(other.left)) {
+                        // Case 3: x的兄弟w是黑色的，并且w的左孩子是红色，右孩子为黑色。
+                        other.right.changeColor(BLACK);
+                        other.changeColor(RED);
+                        leftRotate(other);
+                        other = parent.left;
+                    }
+
+                    // Case 4: x的兄弟w是黑色的；并且w的右孩子是红色的，左孩子任意颜色。
+                    other.changeColor(parent.color);
+                    parent.changeColor(BLACK);
+                    other.left.changeColor(BLACK);
+                    rightRotate(parent);
+                    node = this.root;
+                    break;
+                }
             }
         }
+
+        if (node!=null)
+            node.changeColor(BLACK);
     }
 
 
     public static void main(String[] args) {
         RBTree<Integer> tree = new RBTree<Integer>();
-        tree.insert(1);
-        tree.insert(2);
-        tree.insert(3);
         tree.insert(4);
+        tree.insert(1);
         tree.insert(5);
-        tree.insert(6);
-        tree.insert(7);
-        tree.insert(8);
+        tree.insert(2);
         tree.insert(9);
+        tree.insert(3);
+        tree.insert(7);
+        tree.insert(11);
+        tree.insert(18);
+        tree.insert(16);
+        tree.insert(12);
+        tree.insert(18);
+        tree.insert(17);
+        tree.insert(10);
+        tree.insert(20);
+        tree.insert(19);
+
         tree.displayRoot();
+        tree.frontOrder(tree.root);
+        tree.remove(16);
         tree.frontOrder(tree.root);
 
     }
