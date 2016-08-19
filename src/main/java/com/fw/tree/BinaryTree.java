@@ -1,5 +1,6 @@
 package com.fw.tree;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -53,7 +54,6 @@ public class BinaryTree {
                 }
             }
         }
-
     }
 
     public boolean delete(int key) {
@@ -139,7 +139,7 @@ public class BinaryTree {
     }
 
     // 中序遍历
-    private void inOrder(Node localRoot) {
+    public void inOrder(Node localRoot) {
         if(null != localRoot) {
             inOrder(localRoot.leftChild);
             localRoot.displayNode();
@@ -148,18 +148,18 @@ public class BinaryTree {
     }
 
     // 前序遍历
-    private void frontOrder(Node localRoot) {
+    public void frontOrder(Node localRoot) {
         if(null != localRoot) {
             localRoot.displayNode();
-            inOrder(localRoot.leftChild);
-            inOrder(localRoot.rightChild);
+            frontOrder(localRoot.leftChild);
+            frontOrder(localRoot.rightChild);
         }
     }
     // 后序遍历
-    private void afterOrder(Node localRoot) {
+    public void afterOrder(Node localRoot) {
         if(null != localRoot) {
-            inOrder(localRoot.leftChild);
-            inOrder(localRoot.rightChild);
+            afterOrder(localRoot.leftChild);
+            afterOrder(localRoot.rightChild);
             localRoot.displayNode();
         }
     }
@@ -176,22 +176,26 @@ public class BinaryTree {
         return null;
     }
 
-
+    public int getMaxDepth(Node node) {
+        if (node == null)return 0;
+        int depth = 1 + Math.max(getMaxDepth(node.rightChild), getMaxDepth(node.leftChild));
+        return depth;
+    }
 
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
         log.info("Tree---->: ");
-        tree.insert(3);
-        for(int i = 0; i < 5; i++) {
-           // tree.insert((int)(Math.random()*100));
-            tree.insert(i+1);
-        }
-        tree.insert(8);
-        tree.insert(7);
-        tree.insert(9);
-        tree.inOrder(tree.root);
-        tree.delete(3);
-        tree.inOrder(tree.root);
+//        for(int i = 0; i < 5; i++) {
+//            tree.insert((int)(Math.random()*100));
+//        }
+        tree.insert(50);
+        tree.insert(25);
+        tree.insert(49);
+        tree.insert(60);
+        tree.insert(51);
+        tree.frontOrder(tree.root);
+        //int max = tree.getMaxDepth(tree.root);
+        //log.info("The MaxDepth of the tree is :" + max);
 
     }
 }

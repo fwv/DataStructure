@@ -17,6 +17,8 @@ public class Node {
     }
 
     public void displayNode() {
-        log.info("Node:{ "+ iData +" }");
+        String left = null==leftChild ? "NULL" : leftChild.iData+"";
+        String right = null==rightChild ? "NULL" : rightChild.iData+"";
+        log.info("Node:{ "+ iData +" }, my left child is:{ "+left+" } , my right child is:{ "+right+" }");
     }
 }
