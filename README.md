@@ -13,4 +13,4 @@ Just do some exercise to become familiar with DS.
 * LeetCode(my stupid Resp QAQ) 
  
 ------------------------------------------
-**It will continually update.. _(:з」∠)_**
+**It will continually update..** _(:з」∠)_
