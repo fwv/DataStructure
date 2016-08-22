@@ -7,7 +7,16 @@ import java.util.*;
 import java.util.logging.Logger;
 
 /**
- * Created by Administrator on 2016/8/19/0019.
+ * Leetcode 199. Binary Tree Right Side View
+ * Given a binary tree, imagine yourself standing on the right side of it,
+ * return the values of the nodes you can see ordered from top to bottom.
+ *            1            <---
+ *          /   \
+ *         2     3         <---
+ *          \     \
+ *           5     x       <---
+ *          return [1, 3, 5]
+ * @author fw
  */
 public class BinaryTreeRightSide {
     public static Logger log = Logger.getLogger(BinaryTreeRightSide.class.getName());
@@ -19,12 +28,6 @@ public class BinaryTreeRightSide {
         tree = new BinaryTree();
     }
 
-    //              1            <---
-    //            /   \
-    //           2     3         <---
-    //            \     \
-    //             5     x       <---
-    //            return [1, 3, 5]
     public List<Integer> rightSideView(Node root) {
         LinkedList<Integer> result = new LinkedList<Integer>();
         Queue<Node> queue = new LinkedList<Node>();
