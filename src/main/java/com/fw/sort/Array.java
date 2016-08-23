@@ -5,7 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by Administrator on 2016/8/11/0011.
+ * Array Sort: kinds of sort methods based on array
  */
 public class Array {
 
@@ -43,6 +43,9 @@ public class Array {
         a[i] = a[i] ^ a[j];
     }
 
+    /**
+     * left directional bubble sort
+     */
     public void bubbleFromRightSort() {
        for(int i = nElems-1; i > 1; i--) {
             for(int j = 0; j < i; j++) {
@@ -53,6 +56,9 @@ public class Array {
        }
     }
 
+    /**
+     * right directional bubble sort
+     */
     public void bubbleFromLeftSort() {
         for(int i = 0; i < nElems-2; i++) {
             for(int j = nElems-1; j > i; j--) {
@@ -63,6 +69,9 @@ public class Array {
         }
     }
 
+    /**
+     * selection sort
+     */
     public void selectionSort() {
        for(int i = 0; i < nElems-1; i++) {
            for(int j = i+1; j < nElems; j++) {
@@ -72,7 +81,10 @@ public class Array {
            }
        }
     }
-    // 双向冒泡排序
+
+    /**
+     * double directional bubble sort
+     */
     public void doubleDirectBubbleSort() {
         int outLeft = 0;
         int outRight = nElems-1;
@@ -90,6 +102,9 @@ public class Array {
         }
     }
 
+    /**
+     * insert sort
+     */
     public void insertSort() {
         for(int i = 1; i < nElems; i++) {
             int j = i;
@@ -102,6 +117,9 @@ public class Array {
         }
      }
 
+    /**
+     * shell sort
+     */
     public void shellSort() {
         int out,in;
         long temp;
@@ -123,6 +141,11 @@ public class Array {
         }
     }
 
+    /**
+     * quick sort
+     * @param left
+     * @param right
+     */
     public void quickSort(int left, int right) {
         if (right - left <= 0)return;
 
@@ -131,9 +154,15 @@ public class Array {
         int p = partitionIt(left, right, pivot);
         quickSort(left, p - 1);
         quickSort(p + 1, right);
-        //this.show();
     }
 
+    /**
+     * quick sort choose pivot
+     * @param left
+     * @param right
+     * @param pivot
+     * @return
+     */
     public int partitionIt(int left, int right, long pivot) {
         int leftPtr = left;
         int rightPtr = right + 1;
@@ -151,16 +180,62 @@ public class Array {
         return rightPtr;
     }
 
+    /**
+     * heap sort : heap construction sink()
+     * scan starts halfway back through a[] could
+     * skip subheap of size 1.
+     * @param k
+     * @param n
+     */
+    public void sink(int k, int n) {
+        while(2*k <= n) {
+            int j = 2*k;
+            if (j < n && a[j-1] < a[j])j++;
+            if (a[k-1] >= a[j-1])break;
+            swap(k-1, j-1);
+            k = j;
+        }
+    }
+
+    /**
+     * heap sort
+     * for consistence with a[0] through a[n-1],
+     * decrement the a[]'s indices in swap() and compare value.
+     */
+    public void heapSort() {
+        int N  = nElems;
+        for(int i = N/2; i >= 1; i--) {
+            sink(i, N);
+        }
+        while(N > 1) {
+            swap(0, (N-1));
+            N--;
+            sink(1, N);
+        }
+    }
+
+
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         Array a = new Array(100);
-        for (int i = 0; i < 10; i++)
+/*        for (int i = 0; i < 5; i++)
         {
             long temp = (long)(Math.random()*(15-1));
             a.insert(temp);
-        }
+        }*/
+        a.insert(4);
+        a.insert(5);
+        a.insert(1);
+        a.insert(11);
+        a.insert(8);
+        a.insert(9);
+        a.insert(19);
+        a.insert(191);
 
         a.show();
-        a.quickSort(0, a.nElems-1);
+        a.heapSort();
         a.show();
     }
 
