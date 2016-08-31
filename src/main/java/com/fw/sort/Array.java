@@ -47,12 +47,11 @@ public class Array {
      * left directional bubble sort
      */
     public void bubbleFromRightSort() {
-       for(int i = nElems-1; i > 1; i--) {
-            for(int j = 0; j < i; j++) {
-                if(a[j] > a[j+1]) {
-                    swap(j, j+1);
-                }
-            }
+       for (int out = nElems-1; out > 1; out--) {
+           for (int in = 0; in < out; in++) {
+               if (a[in] > a[in+1])
+                   swap(in, in+1);
+           }
        }
     }
 
@@ -106,14 +105,14 @@ public class Array {
      * insert sort
      */
     public void insertSort() {
-        for(int i = 1; i < nElems; i++) {
-            int j = i;
-            long temp = a[j];
-            while(j > 0 && a[j-1] > temp) {
-                a[j] = a[j-1];
-                j--;
+        for(int out = 1; out < nElems; out++) {
+            int in = out;
+            long temp = a[out];
+            while(in > 0 && a[in-1] > temp) {
+                a[in] = a[in-1];
+                in--;
             }
-            a[j] = temp;
+            a[in] = temp;
         }
      }
 
@@ -147,13 +146,11 @@ public class Array {
      * @param right
      */
     public void quickSort(int left, int right) {
-        if (right - left <= 0)return;
-
+       if (right - left <= 0)return;
         long pivot = a[left];
-
-        int p = partitionIt(left, right, pivot);
-        quickSort(left, p - 1);
-        quickSort(p + 1, right);
+        int newpivot = partitionIt(left, right, pivot);
+        quickSort(left , newpivot-1);
+        quickSort(newpivot+1, right);
     }
 
     /**
@@ -195,6 +192,7 @@ public class Array {
             swap(k-1, j-1);
             k = j;
         }
+
     }
 
     /**
@@ -203,17 +201,16 @@ public class Array {
      * decrement the a[]'s indices in swap() and compare value.
      */
     public void heapSort() {
-        int N  = nElems;
-        for(int i = N/2; i >= 1; i--) {
+        int N = nElems;
+        for (int i = N/2; i > 0; i--) {
             sink(i, N);
         }
         while(N > 1) {
-            swap(0, (N-1));
+            swap(0, N-1);
             N--;
             sink(1, N);
         }
     }
-
 
     /**
      * @param args
@@ -233,7 +230,6 @@ public class Array {
         a.insert(9);
         a.insert(19);
         a.insert(191);
-
         a.show();
         a.heapSort();
         a.show();
