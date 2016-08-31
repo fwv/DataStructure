@@ -1,5 +1,5 @@
 # DataStructure
-Just do some exercise to become familiar with DS.
+Just do some exercise to become familiar with DataStructure.
 * Array(simple sort)
 * Link
     * LinkList
