@@ -6,6 +6,8 @@ Just do some exercise to become familiar with DS.
     * DoublyLinkList
     * FirstLastLinkList
 * Stack
+* Queue
+    * PriorityQueue
 * Heap
 * Tree
     * BinaryTree
