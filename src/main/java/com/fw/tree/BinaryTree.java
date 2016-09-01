@@ -1,6 +1,11 @@
 package com.fw.tree;
 
+import com.fw.stack.Stack;
+
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Vector;
 import java.util.logging.Logger;
 
 /**
@@ -163,6 +168,18 @@ public class BinaryTree {
             localRoot.displayNode();
         }
     }
+    // 非递归前序遍历
+    public void preOrderIteratively(Node root) {
+        java.util.Stack<Node> stack = new java.util.Stack<Node>();
+        if (null == root)return;
+        stack.push(root);
+        while(!stack.isEmpty()) {
+            Node node = stack.pop();
+            node.displayNode();
+            if (null != node.rightChild)stack.push(node.rightChild);
+            if (null != node.leftChild)stack.push(node.leftChild);
+        }
+    }
 
     public boolean isEmpty() {return(null == root);}
 
@@ -194,6 +211,8 @@ public class BinaryTree {
         tree.insert(60);
         tree.insert(51);
         tree.frontOrder(tree.root);
+        log.info("Tree---->: ");
+        tree.preOrderIteratively(tree.root);
         //int max = tree.getMaxDepth(tree.root);
         //log.info("The MaxDepth of the tree is :" + max);
 
