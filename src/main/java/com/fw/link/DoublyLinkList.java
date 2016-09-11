@@ -1,5 +1,6 @@
 package com.fw.link;
 
+import com.fw.Tools.LogUtils;
 import sun.rmi.runtime.Log;
 
 import java.util.logging.Logger;
@@ -8,7 +9,6 @@ import java.util.logging.Logger;
  * Created by Administrator on 2016/8/12/0012.
  */
 public class DoublyLinkList {
-    public static Logger log = Logger.getLogger(DoublyLinkList.class.getName());
     private Link first;
     private Link last;
 
@@ -68,12 +68,12 @@ public class DoublyLinkList {
 
     public void display() {
         if(isEmpty()) {
-            log.info("the doublyLinkList is empty!");
+            LogUtils.log.info("the doublyLinkList is empty!");
         }
         Link cur = first;
-        log.info("display doublyLinkList head -----> tail :");
+        LogUtils.log.info("display doublyLinkList head -----> tail :");
         while(null != cur.next) {
-            log.info("link : "+cur.getKey());
+            LogUtils.log.info("link : "+cur.getKey());
             cur = cur.next;
         }
     }

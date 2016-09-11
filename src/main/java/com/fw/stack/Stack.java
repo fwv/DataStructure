@@ -1,5 +1,8 @@
 package com.fw.stack;
 
+import com.fw.Tools.LogUtils;
+import sun.rmi.runtime.Log;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -8,8 +11,6 @@ import java.util.logging.Logger;
  */
 //@unThreadSafe
 public class Stack<T> {
-
-    private static Logger log = Logger.getLogger(Stack.class.getName());
 
     private T[] stackArray;
 
@@ -28,7 +29,7 @@ public class Stack<T> {
             stackArray[top+1] = temp;
             top++;
         }else {
-            log.log(Level.WARNING, "the stack is pull!");
+            LogUtils.log.info("the stack is pull!");
         }
     }
 
@@ -38,7 +39,7 @@ public class Stack<T> {
             top--;
             return temp;
         }else {
-            log.log(Level.WARNING, "the stack is empty!");
+            LogUtils.log.info("the stack is empty!");
             return null;
         }
     }
@@ -57,9 +58,9 @@ public class Stack<T> {
             for(int out = 0; out <= top; out++) {
                 str += " "+stackArray[out];
             }
-            log.log(Level.INFO, str);
+            LogUtils.log.info(str);
         }else {
-            log.log(Level.WARNING, "the stack is empty!");
+            LogUtils.log.info("the stack is empty!");
         }
     }
 
@@ -81,7 +82,7 @@ public class Stack<T> {
         for(int i = 0; i <= len; i++) {
             result += " "+stack.pop();
         }
-        log.log(Level.INFO, result);
+        LogUtils.log.info(result);
     }
 
 

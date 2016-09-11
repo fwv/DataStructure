@@ -1,5 +1,7 @@
 package com.fw.link;
 
+import com.fw.Tools.LogUtils;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -7,7 +9,6 @@ import java.util.logging.Logger;
  * Created by Administrator on 2016/8/11/0011.
  */
 public class Link {
-    public static Logger log = Logger.getLogger(Link.class.getName());
     private int iData;
     private double dData;
     public Link next;
@@ -25,6 +26,6 @@ public class Link {
     public int getKey(){return iData;}
 
     public void displayLink() {
-        log.log(Level.INFO, "{" + iData + "," +  dData +"}");
+        LogUtils.log.info( "{" + iData + "," +  dData +"}");
     }
 }

@@ -13,7 +13,7 @@ public class RansomNote {
     public boolean canConstruct(String ransomNote, String magazine) {
         char[] a = ransomNote.toCharArray();
         char[] b = magazine.toCharArray();
-        List<Character> B = new ArrayList<>();
+        List<Character> B = new ArrayList<Character>();
         for(int i = 0; i < b.length; i++) {
             B.add(b[i]);
         }

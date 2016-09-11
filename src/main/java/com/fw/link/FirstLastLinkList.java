@@ -1,5 +1,7 @@
 package com.fw.link;
 
+import com.fw.Tools.LogUtils;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -7,7 +9,6 @@ import java.util.logging.Logger;
  * Created by Administrator on 2016/8/11/0011.
  */
 public class FirstLastLinkList {
-    public static Logger log = Logger.getLogger(FirstLastLinkList.class.getName());
     private Link first;
     private Link last;
 
@@ -44,7 +45,7 @@ public class FirstLastLinkList {
     }
 
     public void displayLinkList() {
-        log.log(Level.INFO, "List(first-->last): ");
+        LogUtils.log.info("List(first-->last): ");
         Link current = first;
         while(null != current) {
             current.displayLink();

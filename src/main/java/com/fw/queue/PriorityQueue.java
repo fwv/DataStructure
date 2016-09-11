@@ -1,5 +1,7 @@
 package com.fw.queue;
 
+import com.fw.Tools.LogUtils;
+
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.logging.Logger;
@@ -9,8 +11,6 @@ import java.util.logging.Logger;
  * PriorityQueue based on heap
  */
 public class PriorityQueue<T> {
-
-    private static Logger log = Logger.getLogger(PriorityQueue.class.getName());
 
     private int capacity = 0;
 
@@ -89,7 +89,7 @@ public class PriorityQueue<T> {
         for (int i = 1; i < size+1; i++) {
             s += " "+this.queue[i];
         }
-        log.info(s);
+        LogUtils.log.info(s);
     }
 
     public void showPoll() {
@@ -98,7 +98,7 @@ public class PriorityQueue<T> {
         for (int i = 1; i < size+1; i++) {
             s += " "+poll();
         }
-        log.info(s);
+        LogUtils.log.info(s);
     }
 
     public static void main(String[] args) {

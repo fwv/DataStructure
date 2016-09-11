@@ -39,7 +39,7 @@ public class BinaryTreeLevelOrderTraversal {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         ArrayList<Node> gparent = new ArrayList<Node>();
         ArrayList<Node> parent = new ArrayList<Node>();
-        Queue<Node> queue = new LinkedList<>();
+        Queue<Node> queue = new LinkedList<Node>();
         if (null == root) return result;
         gparent.add(root);
         queue.add(root);
@@ -66,7 +66,7 @@ public class BinaryTreeLevelOrderTraversal {
     }
 
     public List<Integer> nodeToVal(List<Node> nodes) {
-        List<Integer> result = new ArrayList<>();
+        List<Integer> result = new ArrayList<Integer>();
         for (Node n : nodes) {
             result.add(n.iData);
         }

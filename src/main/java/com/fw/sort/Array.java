@@ -1,7 +1,10 @@
 package com.fw.sort;
 
+import com.fw.Tools.LogUtils;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 /**
@@ -15,8 +18,6 @@ public class Array {
 
     private int nElems;
 
-    private static Logger log = Logger.getLogger(Array.class.getName());
-
     public Array(int length) {
         this.length = length;
         a = new long[this.length];
@@ -28,13 +29,13 @@ public class Array {
     }
 
     public void show() {
-        log.log(Level.INFO,"==========Show Array==========");
+        LogUtils.log.info("==========Show Array==========");
         String str = "Array: ";
         for(int i = 0; i < nElems; i++) {
             str += " "+a[i];
         }
-        log.log(Level.WARNING, str);
-        log.log(Level.INFO, "==========Show Array==========");
+        LogUtils.log.info(str);
+        LogUtils.log.info("==========Show Array==========");
     }
 
     public void swap(int i, int j) {
