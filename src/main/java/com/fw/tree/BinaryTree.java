@@ -4,12 +4,15 @@ package com.fw.tree;
 import java.util.*;
 import java.util.logging.Logger;
 
+
 /**
- * Created by Administrator on 2016/8/12/0012.
+ * @Author fengwei
+ * Binary Tree
  */
 public class BinaryTree {
 
     public static Logger log = Logger.getLogger(BinaryTree.class.getName());
+
     public Node root;
 
     public Node find(int key) {

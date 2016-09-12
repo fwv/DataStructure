@@ -187,13 +187,12 @@ public class Array {
      */
     public void sink(int k, int n) {
         while(2*k <= n) {
-            int j = 2*k;
+            int j = 2 * k;
             if (j < n && a[j-1] < a[j])j++;
             if (a[k-1] >= a[j-1])break;
             swap(k-1, j-1);
             k = j;
         }
-
     }
 
     /**
@@ -202,14 +201,13 @@ public class Array {
      * decrement the a[]'s indices in swap() and compare value.
      */
     public void heapSort() {
-        int N = nElems;
-        for (int i = N/2; i > 0; i--) {
-            sink(i, N);
+        int n = nElems;
+        for (int i = n/2; i > 0; i--) {
+            sink(i, n);
         }
-        while(N > 1) {
-            swap(0, N-1);
-            N--;
-            sink(1, N);
+        while (n > 1) {
+            swap(0, n-1);
+            sink(1, --n);
         }
     }
 
