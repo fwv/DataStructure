@@ -84,7 +84,7 @@ public class BinaryTreeRightSide {
         ts.tree.insert(3);
         ts.tree.insert(6);
 
-        ts.tree.frontOrder(ts.tree.root);
+        ts.tree.frontOrderRecursivly(ts.tree.root);
         List<Integer> list = ts.rightSideView(ts.tree.root);
         log.info("============== RIGHT SIDE ==============");
         for (Integer i : list) {

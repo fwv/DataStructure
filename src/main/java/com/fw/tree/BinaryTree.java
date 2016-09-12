@@ -1,11 +1,7 @@
 package com.fw.tree;
 
-import com.fw.stack.Stack;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Vector;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -143,21 +139,36 @@ public class BinaryTree {
         return successor;
     }
 
-    // 中序遍历
-    public void inOrder(Node localRoot) {
+    // 中序遍历递归
+    public void inOrderRecursivly(Node localRoot) {
         if(null != localRoot) {
-            inOrder(localRoot.leftChild);
+            inOrderRecursivly(localRoot.leftChild);
             localRoot.displayNode();
-            inOrder(localRoot.rightChild);
+            inOrderRecursivly(localRoot.rightChild);
+        }
+    }
+
+    // 中序遍历迭代
+    public void inOrderIteratorly(Node localRoot) {
+        Stack<Node> stack = new Stack<Node>();
+        while(null != localRoot || !stack.isEmpty()) {
+            if (null != localRoot) {
+                stack.push(localRoot);
+                localRoot = localRoot.leftChild;
+            } else {
+                Node node = stack.pop();
+                node.displayNode();
+                localRoot = node.rightChild;
+            }
         }
     }
 
     // 前序遍历
-    public void frontOrder(Node localRoot) {
+    public void frontOrderRecursivly(Node localRoot) {
         if(null != localRoot) {
             localRoot.displayNode();
-            frontOrder(localRoot.leftChild);
-            frontOrder(localRoot.rightChild);
+            frontOrderRecursivly(localRoot.leftChild);
+            frontOrderRecursivly(localRoot.rightChild);
         }
     }
     // 后序遍历
@@ -210,9 +221,9 @@ public class BinaryTree {
         tree.insert(49);
         tree.insert(60);
         tree.insert(51);
-        tree.frontOrder(tree.root);
+        tree.inOrderRecursivly(tree.root);
         log.info("Tree---->: ");
-        tree.preOrderIteratively(tree.root);
+        tree.inOrderIteratorly(tree.root);
         //int max = tree.getMaxDepth(tree.root);
         //log.info("The MaxDepth of the tree is :" + max);
 
