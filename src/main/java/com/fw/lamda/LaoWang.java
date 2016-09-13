@@ -4,7 +4,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
- * Created by Administrator on 2016/8/16/0016.
+ * @Author fengwei
+ * Created on 2016/8/16/0016.
  */
 public class LaoWang {
 

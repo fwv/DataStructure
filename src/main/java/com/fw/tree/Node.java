@@ -3,7 +3,8 @@ package com.fw.tree;
 import java.util.logging.Logger;
 
 /**
- * Created by Administrator on 2016/8/12/0012.
+ * @Author fengwei
+ * Created on 2016/8/12/0012.
  */
 public class Node {
     public static Logger log = Logger.getLogger(Node.class.getName());

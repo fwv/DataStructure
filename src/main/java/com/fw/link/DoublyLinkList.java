@@ -6,7 +6,8 @@ import sun.rmi.runtime.Log;
 import java.util.logging.Logger;
 
 /**
- * Created by Administrator on 2016/8/12/0012.
+ * @Author fengwei
+ * Created on 2016/8/12/0012.
  */
 public class DoublyLinkList {
     private Link first;

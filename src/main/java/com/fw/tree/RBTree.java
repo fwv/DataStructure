@@ -4,7 +4,8 @@ import java.util.Objects;
 import java.util.logging.Logger;
 
 /**
- * Created by Administrator on 2016/8/15/0015.
+ * @Author fengwei
+ * Created on 2016/8/15/0015.
  */
 public class RBTree<T extends Comparable<T>> {
     public static Logger log = Logger.getLogger(RBTree.class.getName());

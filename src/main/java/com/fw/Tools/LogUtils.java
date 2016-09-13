@@ -4,7 +4,8 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 /**
- * Created by fengwei on 2016/9/11.
+ * @Author fengwei
+ * Created on 2016/9/11.
  */
 public class LogUtils {
 

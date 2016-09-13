@@ -7,7 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by Administrator on 2016/8/11/0011.
+ * @Author fengwei
+ * Created on 2016/8/11/0011.
  */
 //@unThreadSafe
 public class Stack<T> {

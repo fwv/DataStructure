@@ -3,7 +3,8 @@ package com.fw.heap;
 import java.util.function.Function;
 
 /**
- * Created by Administrator on 2016/8/17/0017.
+ * @Author fengwei
+ * Created on 2016/8/17/0017.
  */
 public class ArrayHeap<T extends Comparable> {
 
