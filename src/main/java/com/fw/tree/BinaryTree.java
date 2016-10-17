@@ -158,7 +158,7 @@ public class BinaryTree {
             if (null != localRoot) {
                 stack.push(localRoot);
                 localRoot = localRoot.leftChild;
-            } else {
+            }else {
                 Node node = stack.pop();
                 node.displayNode();
                 localRoot = node.rightChild;
