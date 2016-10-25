@@ -3,7 +3,16 @@ package com.fw.leetCode;
 import com.fw.Tools.LogUtils;
 
 /**
+ * Leetcode.318 Maximum Product of Word Lengths
  * Created by fengwei on 2016/10/24.
+ *
+ * Given a string array words, find the maximum value of length(word[i]) * length(word[j]) where the two words do not share common
+ * letters. You may assume that each word will contain only lower case letters. If no such two words exist, return 0.
+ *
+ * For Example:
+ * Given ["abcw", "baz", "foo", "bar", "xtfn", "abcdef"]
+ * Return 16
+ *
  */
 public class MaximumProductOfWordLen {
     public int maxProduct(String[] words) {
