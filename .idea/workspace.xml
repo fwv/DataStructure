@@ -6,9 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3cdd5557-8160-4fed-a76d-b1e3be418fbb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fw/leetCode/LongestPalindrome.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/DataStructureAndAlgorithm_jar/DataStructureAndAlgorithm.jar" afterPath="$PROJECT_DIR$/out/artifacts/DataStructureAndAlgorithm_jar/DataStructureAndAlgorithm.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/fw/leetCode/RansomNote.class" afterPath="$PROJECT_DIR$/target/classes/com/fw/leetCode/RansomNote.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/fw/leetCode/FindRightInterval.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DataStructureAndAlgorithm.iws" />
@@ -33,7 +31,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LongestPalindrome.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LongestPalindrome.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fw/leetCode/LongestPalindrome.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1628">
@@ -42,6 +40,31 @@
                 <element signature="imports" expanded="true" />
                 <element signature="e#925#945#0" expanded="true" />
                 <element signature="e#1756#1767#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FindRightInterval.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/fw/leetCode/FindRightInterval.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="484">
+              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TreeMap.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/src.zip!/java/util/TreeMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="745" column="0" selection-start-line="745" selection-start-column="0" selection-end-line="745" selection-end-column="0" />
+              <folding>
+                <element signature="e#26048#26049#0" expanded="true" />
+                <element signature="e#26104#26105#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,6 +144,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/fw/leetCode/RansomNote.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fw/sort/Array.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fw/leetCode/LongestPalindrome.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fw/leetCode/FindRightInterval.java" />
       </list>
     </option>
   </component>
@@ -902,12 +926,12 @@
       <workItem from="1477360991635" duration="721000" />
       <workItem from="1477363404296" duration="7184000" />
       <workItem from="1478075316812" duration="3499000" />
-      <workItem from="1478768757663" duration="1731000" />
+      <workItem from="1478768757663" duration="3846000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212173000" />
+    <option name="totallyTimeSpent" value="214288000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
@@ -974,8 +998,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/src.zip!/java/lang/ClassLoader.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/src.zip!/java/util/Collection.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/src.zip!/java/util/AbstractList.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/src.zip!/java/util/UUID.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/src.zip!/java/util/HashSet.java" />
@@ -1219,6 +1241,27 @@
             <element signature="imports" expanded="true" />
             <element signature="e#925#945#0" expanded="true" />
             <element signature="e#1756#1767#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/src.zip!/java/util/TreeMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="745" column="0" selection-start-line="745" selection-start-column="0" selection-end-line="745" selection-end-column="0" />
+          <folding>
+            <element signature="e#26048#26049#0" expanded="true" />
+            <element signature="e#26104#26105#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fw/leetCode/FindRightInterval.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
