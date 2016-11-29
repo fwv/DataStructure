@@ -4,6 +4,9 @@ import com.fw.Tools.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author fengwei
@@ -31,6 +34,9 @@ public class BinaryWatch {
     }
 
     public static void main(String[] args) {
-        LogUtils.log.info(Integer.bitCount(666));
+        //LogUtils.log.info(Integer.bitCount(-1));
+        int a = 600;
+        int b = 3000;
+        LogUtils.log.info((float)a/(float) b);
     }
 }

@@ -106,14 +106,20 @@ public class Array {
      * insert sort
      */
     public void insertSort() {
-        for(int out = 1; out < nElems; out++) {
-            int in = out;
-            long temp = a[out];
-            while(in > 0 && a[in-1] > temp) {
-                a[in] = a[in-1];
-                in--;
+//        for(int out = 1; out < nElems; out++) {
+//            int in = out;
+//            long temp = a[out];
+//            while(in > 0 && a[in-1] > temp) {
+//                a[in] = a[in-1];
+//                in--;
+//            }
+//            a[in] = temp;
+//        }
+
+        for (int i = 1; i < nElems; i++) {
+            for (int j = i; j > 0 && a[j] < a[j-1]; j--) {
+                swap(j, j-1);
             }
-            a[in] = temp;
         }
      }
 
@@ -230,7 +236,7 @@ public class Array {
         a.insert(19);
         a.insert(191);
         a.show();
-        a.heapSort();
+        a.insertSort();
         a.show();
     }
 
