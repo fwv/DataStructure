@@ -185,6 +185,49 @@ public class Array {
     }
 
     /**
+     * merge sort: O(nlogn) from top to down
+     */
+    public void mergeSortFromTop2Down() {
+        long[] aux = new long[nElems];
+        sort(aux, 0, nElems-1);
+    }
+
+    public void sort(long[] aux, int lo, int hi) {
+        if (lo == hi)return;
+        int mid = lo + (hi - lo) / 2;
+        sort(aux, lo, mid);
+        sort(aux, mid+1, hi);
+        merge(aux, lo, mid, hi);
+    }
+
+    public void merge(long[] aux, int lo, int mid, int hi) {
+
+        for (int i = lo; i <= hi; i++) {
+            aux[i] = a[i];
+        }
+        int left = lo;
+        int right = mid+1;
+        for (int k = lo; k <= hi; k++) {
+            if (left > mid) {
+                a[k] = aux[right++];
+            } else if (right > hi) {
+                a[k] = aux[left++];
+            } else if (aux[left] < aux[right]) {
+                a[k] = aux[left++];
+            } else if (aux[right] <= aux[left]) {
+                a[k] = aux[right++];
+            } else {
+                LogUtils.log.error("merge error !");
+            }
+        }
+        ArrayList<String> str = new ArrayList<>();
+        for (int k = lo; k <= hi; k++) {
+            str.add("" + a[k]);
+        }
+        LogUtils.log.info(str);
+    }
+
+    /**
      * heap sort : heap construction sink()
      * scan starts halfway back through a[] could
      * skip subheap of size 1.
@@ -236,7 +279,7 @@ public class Array {
         a.insert(19);
         a.insert(191);
         a.show();
-        a.insertSort();
+        a.mergeSortFromTop2Down();
         a.show();
     }
 
