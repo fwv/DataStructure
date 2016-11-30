@@ -1,6 +1,7 @@
 package com.fw.link;
 
 import com.fw.Tools.LogUtils;
+import sun.rmi.runtime.Log;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,4 +30,5 @@ public class Link {
     public void displayLink() {
         LogUtils.log.info( "{" + iData + "," +  dData +"}");
     }
+
 }

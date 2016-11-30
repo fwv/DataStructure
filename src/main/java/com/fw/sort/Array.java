@@ -39,6 +39,7 @@ public class Array {
     }
 
     public void swap(int i, int j) {
+        if (i == j)return;
         a[i] = a[i] ^ a[j];
         a[j] = a[i] ^ a[j];
         a[i] = a[i] ^ a[j];
@@ -149,43 +150,55 @@ public class Array {
 
     /**
      * quick sort
-     * @param left
-     * @param right
      */
-    public void quickSort(int left, int right) {
-       if (right - left <= 0)return;
-        long pivot = a[left];
-        int newpivot = partitionIt(left, right, pivot);
-        quickSort(left , newpivot-1);
-        quickSort(newpivot+1, right);
+    public void quickSort() {
+        sort(0, nElems-1);
+    }
+
+    public void sort(int lo, int hi) {
+        if (lo >= hi)return;
+        int j = partitionIt(lo, hi);
+        sort(lo, j-1);
+        sort(j+1, hi);
     }
 
     /**
      * quick sort choose pivot
-     * @param left
-     * @param right
-     * @param pivot
      * @return
      */
-    public int partitionIt(int left, int right, long pivot) {
-        int leftPtr = left;
-        int rightPtr = right + 1;
+    public int partitionIt(int lo, int hi) {
+        int i = lo + 1;
+        int j = hi;
+        int min = lo;
+        int max = hi;
         while(true) {
-            while(a[++leftPtr] < pivot) {
-                if(leftPtr == right)break;
+
+            while(true) {
+                if ( i >= max || a[i] > a[lo]) {
+                    break;
+                }
+                i++;
             }
-            while(a[--rightPtr] > pivot) {
-                if (rightPtr == left)break;
+
+            while(true) {
+                if ( j <= min || a[j] < a[lo]) {
+                    break;
+                }
+                j--;
             }
-            if(leftPtr >= rightPtr)break;
-            swap(leftPtr, rightPtr);
+
+            if (i >= j)
+            break;
+
+            swap(i, j);
         }
-        swap(left, rightPtr);
-        return rightPtr;
+        swap(lo, j);
+        return j;
     }
 
     /**
      * merge sort: O(nlogn) from top to down
+     * no extra space merge
      */
     public void mergeSortFromTop2Down() {
         long[] aux = new long[nElems];
@@ -279,7 +292,7 @@ public class Array {
         a.insert(19);
         a.insert(191);
         a.show();
-        a.mergeSortFromTop2Down();
+        a.quickSort();
         a.show();
     }
 
