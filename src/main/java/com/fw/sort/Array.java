@@ -156,7 +156,7 @@ public class Array {
     }
 
     public void sort(int lo, int hi) {
-        if (lo >= hi)return;
+        if (lo >= hi) return;
         int j = partitionIt(lo, hi);
         sort(lo, j-1);
         sort(j+1, hi);
@@ -167,29 +167,24 @@ public class Array {
      * @return
      */
     public int partitionIt(int lo, int hi) {
-        int i = lo + 1;
+        int i = lo+1;
         int j = hi;
-        int min = lo;
-        int max = hi;
         while(true) {
-
             while(true) {
-                if ( i >= max || a[i] > a[lo]) {
+                if (a[i] > a[lo] || i >= hi) {
                     break;
                 }
                 i++;
             }
-
             while(true) {
-                if ( j <= min || a[j] < a[lo]) {
+                if (a[j] < a[lo] || j <= lo) {
                     break;
                 }
                 j--;
             }
-
-            if (i >= j)
-            break;
-
+            if (i >= j) {
+                break;
+            }
             swap(i, j);
         }
         swap(lo, j);
