@@ -6,7 +6,7 @@ import com.fw.Tools.LogUtils;
  * @Author fengwei
  * Created on 2016/12/19/0019.
  */
-public class StrSort {
+public class LSDStrSort {
 
     //every string which in a[] must have same length.
     public static void LSD(String[] a) {
@@ -40,18 +40,9 @@ public class StrSort {
 
     }
 
-//    public static void MSD(String[] a) {
-//        int N = a.length;
-//        int R = 256;
-//        for () {
-//
-//        }
-//
-//    }
-
     public static void main(String[] args) {
         String [] strs = {"aldol", "casld","zzzzz","abcde","alsol"};
-        StrSort.LSD(strs);
+        LSDStrSort.LSD(strs);
         for (int i = 0; i < strs.length; i++) {
             LogUtils.log.info(strs[i]);
         }
