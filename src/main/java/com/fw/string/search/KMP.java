@@ -5,7 +5,7 @@ import com.fw.Tools.LogUtils;
 /**
  * @Author fengwei
  * Created on 2017/1/3/0003.
- * comprehensive : KMP算法其实就是针对每一个pattern串模拟构建一个
+ * Comprehensive : KMP算法其实就是针对每一个pattern串模拟构建一个
  *                 确定有穷状态机（dfa）并用数组保存起来，查找的过
  *                 程就是把样本串丢到状态机中，如能到达最后一个状态
  *                 则表示存在匹配串。
