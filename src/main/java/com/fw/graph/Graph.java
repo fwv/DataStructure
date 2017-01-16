@@ -8,11 +8,11 @@ import java.util.ArrayList;
  */
 public class Graph {
     // count of vertex
-    private final int V;
+    protected final int V;
     // count of edge
-    private int E;
+    protected int E;
     // adjacent diagram
-    private ArrayList<Integer>[] adj;
+    protected ArrayList<Integer>[] adj;
 
     public Graph(int V) {
         this.V = V;

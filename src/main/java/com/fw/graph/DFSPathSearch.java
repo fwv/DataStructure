@@ -1,8 +1,6 @@
 package com.fw.graph;
 
 import com.fw.Tools.LogUtils;
-import sun.rmi.runtime.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -47,6 +45,23 @@ public class DFSPathSearch {
         List<Integer> path = new ArrayList<>();
         path.addAll(stack);
         return path;
+    }
+
+    /**
+     * 计算连通分量的数量(用之前注意marked数组是否为脏)
+     * @param graph
+     * @param S
+     * @return
+     */
+    public int compoment(Graph graph, int S) {
+        int count = 0;
+        for(int W = 0; W < graph.V(); W++) {
+            if (!marked[W]) {
+                count++;
+                dfs(graph, W);
+            }
+        }
+        return count;
     }
 
     public static void main(String[] args) {
